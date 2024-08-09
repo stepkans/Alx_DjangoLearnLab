@@ -1,6 +1,7 @@
 ### Update Operation
-```python
+```python Django
 
+from bookshelf.models import Book
 # Update Operation
 book.title = "Nineteen Eighty-Four"
 book.save()
