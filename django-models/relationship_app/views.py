@@ -46,4 +46,4 @@ def register(request):
     context = {
         'form': form,
     }    
-    return render(request, 'relationship_app/library_detail.html', context)
+    return render(request, 'relationship_app/register.html', context)
