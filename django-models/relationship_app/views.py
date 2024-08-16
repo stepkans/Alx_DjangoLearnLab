@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from .models import Library
 from .models import Book
-
+from django.contrib.auth.decorators import permission_required
 from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import user_passes_test
+from .forms import BookForm 
 
 # Create your views here. .
 def books_list(request):
@@ -51,6 +52,7 @@ def register(request):
     return render(request, 'relationship_app/register.html', context)
 
 # Below are Helper functions to check user roles
+
 def is_admin(user):
     """ Checks if user is an admin"""
     return user.userprofile.role == 'Admin'
@@ -74,3 +76,18 @@ def librarian_view(request):
 @user_passes_test(is_member)
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')
+
+def add_book(request):
+    if request.method == "POST":
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('books')
+            
+    else:
+        form = BookForm()
+
+    context = {
+        'form': form
+        }    
+    return render(request, 'relationship_app/add_book.html', context)           
