@@ -1,4 +1,4 @@
-## Taks on Introduction to Django
+## Tasks on Introduction to Django and advanced features and security
 
 # Permissions and Groups Setup
 
@@ -13,16 +13,15 @@ The following custom permissions have been defined for the Book model:
 # Groups
 Three user groups have been set up with the following permissions:
 
-Viewers:
-
+# Viewers:
 can_view
-Editors:
 
+# Editors:
 can_view
 can_create
 can_edit
-Admins:
 
+# Admins:
 can_view
 can_create
 can_edit
