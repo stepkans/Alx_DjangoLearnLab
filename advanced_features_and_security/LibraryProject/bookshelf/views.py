@@ -31,16 +31,14 @@ def create_book(request):
     return render(request, "bookshelf/edit-book.html", {"form":form})
 
 @permission_required("bookshelf.can_edit", raise_exception=True)
-@require_http_methods(["GET", "POST"])
 def edit_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == "POST":
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
-            with transaction.atomic():
-                book = form.save(commit=False)
-                book.updated_by = request.user
-                form.save()
+            book = form.save(commit=False)
+            book.updated_by = request.user
+            form.save()
             return redirect("book_details", pk=pk)
     else:
         form = BookForm(instance=book)
@@ -51,7 +49,6 @@ def edit_book(request, pk):
 def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == "POST":
-        with transaction.atomic():
-            book.delete()
+        book.delete()
         return redirect("book_list")
-    return render(request, "bookshelf/deleted_book.html", {"book":book})
+    return render(request, "bookshelf/deleted-book.html", {"book":book})
