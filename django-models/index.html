@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .receipt-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .receipt-header h1 {
+            margin: 0;
+        }
+        .receipt-body {
+            margin-bottom: 20px;
+        }
+        .receipt-body table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .receipt-body table, .receipt-body th, .receipt-body td {
+            border: 1px solid black;
+        }
+        .receipt-body th, .receipt-body td {
+            padding: 8px;
+            text-align: left;
+        }
+        .receipt-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="receipt-header">
+    <h1>Payment Receipt</h1>
+    <p>ADM Number: {{ student.adm_number }}</p>
+</div>
+
+<div class="receipt-body">
+    <table>
+        <tr>
+            <th>Student Name</th>
+            <td>{{ student.user.username }}</td>
+        </tr>
+        <tr>
+            <th>Payment Date</th>
+            <td>{{ payment.payment_date }}</td>
+        </tr>
+        <tr>
+            <th>Fee Type</th>
+            <td>{{ fee_structure.name }}</td>
+        </tr>
+        <tr>
+            <th>Amount Paid</th>
+            <td>{{ payment.amount_paid }}</td>
+        </tr>
+        <tr>
+            <th>Total Fee</th>
+            <td>{{ fee_structure.amount }}</td>
+        </tr>
+        <tr>
+            <th>Balance</th>
+            <td>{{ balance }}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="receipt-footer">
+    <p>Thank you for your payment.</p>
+</div>
+
+</body>
+</html>
