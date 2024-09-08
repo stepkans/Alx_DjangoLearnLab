@@ -1,16 +1,6 @@
 from rest_framework import serializers
 from .models import Author, Book
 import datetime
-
-class AuthorSerializer(serializers.ModelSerializer):
-    """
-        The Author model represents a book author.
-        It contains just a 'name' field for the author's name.
-    """
-    class Meta:
-        model = Author
-        fields = ('name',)
-
 class BookSerializer(serializers.ModelSerializer):
     """
         The Book model represents a book.
@@ -27,4 +17,12 @@ class BookSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Publication year cannot be in the future.")
         return value    
         
-        
+class AuthorSerializer(serializers.ModelSerializer):
+    books = BookSerializer(many=True, read_only=True)
+    """
+        The Author model represents a book author.
+        It contains just a 'name' field for the author's name.
+    """
+    class Meta:
+        model = Author
+        fields = ('name',)
