@@ -52,7 +52,7 @@ class BookAPITests(APITestCase):
         self.book.refresh_from_db()  # Refresh the book instance from the database
         self.assertEqual(self.book.title, 'Updated Book Title')
         self.assertEqual(self.book.publication_year, 2021)
-          
+        
     def test_delete_book(self):
         book_id = self.book.id
         response = self.client.delete(reverse('book-detail', args=[book_id]))
