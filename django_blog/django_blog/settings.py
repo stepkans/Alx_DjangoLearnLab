@@ -88,13 +88,7 @@ DATABASES = {
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
-        
-        'NAME': 'django_blog',
-        'USER': 'postgres',
-        'PASSWORD': 'S28065701',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': config('DB_PORT')
     }
 }
 
