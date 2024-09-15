@@ -11,6 +11,7 @@ from django.urls import reverse_lazy
 from .models import Post, Comment
 
 
+
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -116,3 +117,7 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         comment = self.get_object()
         return self.request.user == comment.author    
+    
+    
+def posts_by_tag():
+    pass    
