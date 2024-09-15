@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from .forms import UserRegistrationForm
-from django.contrib.auth.decorators import login_required
+
 
 def register(request):
     if request.method == 'POST':
@@ -15,9 +16,9 @@ def register(request):
             return redirect('profile')
     else:
         form = UserRegistrationForm()
-    return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'blog/register.html', {'form': form})
 
 @login_required
 def profile(request):
-    return render(request, 'registration/profile.html')
+    return render(request, 'blog/profile.html')
 
