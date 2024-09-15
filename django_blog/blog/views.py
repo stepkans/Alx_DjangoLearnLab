@@ -120,4 +120,5 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     
     
 def posts_by_tag():
-    pass    
+    pass   
+
