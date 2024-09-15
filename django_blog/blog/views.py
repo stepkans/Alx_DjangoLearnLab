@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.views import LoginView, LogoutView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, PostCreateForm
+from .models import Post
 
 
 def register(request):
@@ -18,7 +21,28 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'blog/register.html', {'form': form})
 
+# class LoginView(LoginView):
+#     template_name = 'login.html'
+
 @login_required
 def profile(request):
     return render(request, 'blog/profile.html')
 
+class PostListView(ListView):
+    model =  Post
+    template_name = 'blog/post_list.html'
+    context_object_name = 'posts'
+    ordering = ['-published_date']
+
+class PostDetailView(DetailView):
+    model =  Post
+    template_name = 'blog/post_detail.html'
+    
+class PostCreateView(CreateView):
+    model = Post
+    form_class = PostCreateForm
+    template_name = 'blog/post_form.html'  
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)       

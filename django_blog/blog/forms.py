@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.models import User
 from django import forms
+from .models import Post
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -14,4 +15,11 @@ class UserRegistrationForm(UserCreationForm):
         user.email = self.cleaned_data["email"]
         if commit:
             user.save()
+            
+class PostCreateForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'content']
+        
+    
 

@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+
+{% for post in posts %}
+    <div>
+        <h2><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+        <p>{{ post.content|slice:":100" }}...</p>
+        <p><strong>Published:</strong> {{ post.published_date }}</p>
+    </div>
+{% endfor %}
+
+{% endblock content %}
