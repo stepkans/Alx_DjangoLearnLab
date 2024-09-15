@@ -1,0 +1,9 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- logged_out.html -->
+<h2>You have been logged out.</h2>
+<a href="{% url 'login' %}">Login again</a>
+
+{% endblock content %}
