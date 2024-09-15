@@ -16,7 +16,7 @@ class UserRegistrationForm(UserCreationForm):
         if commit:
             user.save()
             
-class PostCreateForm(forms.ModelForm):
+class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content']
