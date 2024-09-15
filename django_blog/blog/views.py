@@ -132,5 +132,19 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     
     
 def posts_by_tag():
-    pass   
+    pass  
+
+class PostByTagListView(ListView):
+    model = Post
+    template_name = 'blog/post_list.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        tag_slug = self.kwargs.get('tag_slug')
+        if tag_slug:
+            tag = Tag.objects.get(slug=tag_slug)
+            return Post.objects.filter(tags__in=[tag]) 
+        return Post.objects.all()  
+
+
 
