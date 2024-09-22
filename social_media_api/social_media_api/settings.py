@@ -23,9 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-r!f5hibd=yu+5&7xps1qximxl*59fg6@nue#6)uayz%*0zy7#4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['http://127.0.0.1:8000', 'http://localhost/''example.com', 'www.example.com', ]
 
 
 # Application definition
@@ -126,6 +127,27 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Specify the absolute path to the directory where static files will be collected.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Specify the directories from which to collect static files.
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+# Base url to serve media files
+MEDIA_URL = 'media/'
+
+# Path where media is stored'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_SSL_REDIRECT = True  # Ensure HTTPS redirection
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
